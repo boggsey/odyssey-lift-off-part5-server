@@ -1,5 +1,4 @@
 const { ApolloServer } = require('apollo-server');
-const { ApolloServerPluginSchemaReporting } = "apollo-server-core";
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 const TrackAPI = require('./datasources/track-api');
@@ -13,9 +12,6 @@ async function startApolloServer(typeDefs, resolvers) {
         trackAPI: new TrackAPI(),
       };
     },
-    plugins: [
-      ApolloServerPluginSchemaReporting(),
-    ],
   });
 
   const { url, port } = await server.listen({ port: process.env.PORT || 4000 });
